@@ -1,4 +1,5 @@
 import '@/assets/app.css';
+import { Header } from '@/components/header';
 import { QueryProvider } from '@/components/providers/query-provider';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 import { ToastProvider } from '@/components/providers/toast-provider';
@@ -40,7 +41,8 @@ export default function RootLayout({ children }: PropsWithChildren) {
             enableColorScheme
             defaultTheme="light"
           >
-            {children}
+            <Header />
+            <main className="container p-4">{children}</main>
             <ToastProvider />
           </ThemeProvider>
         </QueryProvider>
