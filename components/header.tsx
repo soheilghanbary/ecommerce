@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Button, buttonVariants } from './ui/button';
 import { Input } from './ui/input';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
+import { ModeToggle } from './mode-toggle';
 
 export function MobileMenu() {
   return (
@@ -16,7 +17,7 @@ export function MobileMenu() {
       <SheetContent side="right" className="w-72 p-4">
         <div className="mb-6 flex items-center gap-1 text-blue-500">
           <FlameIcon className="size-6 fill-blue-400/20" />
-          <span className="font-semibold">Shopino</span>
+          <span className="font-bold">Shopino</span>
         </div>
         <div className="flex flex-col gap-2">
           <Link
@@ -29,13 +30,13 @@ export function MobileMenu() {
             Home
           </Link>
           <Link
-            href={'/'}
+            href={'/blgo'}
             className={cn(
               buttonVariants({ size: 'sm', variant: 'ghost' }),
               'justify-normal text-foreground/75',
             )}
           >
-            All Products
+            Blog
           </Link>
           <Link
             href={'/'}
@@ -55,10 +56,10 @@ export function MobileMenu() {
 export function Header() {
   return (
     <header className="border-separate border-b">
-      <nav className="container flex items-center justify-between gap-4 p-2 lg:p-4">
-        <div className="flex items-center gap-1 text-blue-500">
+      <nav className="container flex items-center justify-between gap-4 p-4">
+        <div className="flex items-center gap-1 text-blue-500 dark:text-blue-300">
           <FlameIcon className="size-6 fill-blue-400/20" />
-          <span className="hidden font-semibold sm:inline">Shopino</span>
+          <span className="hidden font-bold sm:inline">Shopino</span>
         </div>
         <div className="hidden flex-1 items-center gap-2 md:flex">
           <Link
@@ -71,13 +72,13 @@ export function Header() {
             Home
           </Link>
           <Link
-            href={'/'}
+            href={'/blog'}
             className={cn(
               buttonVariants({ size: 'sm', variant: 'ghost' }),
               'text-foreground/75',
             )}
           >
-            All Products
+            Blog
           </Link>
           <Link
             href={'/'}
@@ -103,6 +104,7 @@ export function Header() {
           <Button variant={'ghost'} size={'icon'}>
             <ShoppingCart className="size-4" />
           </Button>
+          <ModeToggle />
           <MobileMenu />
         </div>
       </nav>

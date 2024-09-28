@@ -4,8 +4,8 @@ import { Button } from './ui/button';
 
 const ProductCard = () => {
   return (
-    <div className="border-separate rounded-lg border transition-all hover:shadow-lg">
-      <div className="h-80 w-full rounded-t-[inherit] bg-muted" />
+    <div className="border-separate rounded-xl border transition-all duration-200 hover:shadow-md">
+      <div className="h-80 w-full rounded-t-[inherit] bg-muted/40" />
       <div className="p-4">
         <div className="mb-2 flex items-start justify-between">
           <h3 className="line-clamp-2 font-semibold text-lg">
@@ -16,7 +16,9 @@ const ProductCard = () => {
         <div className="mb-2 flex items-center">
           <StarIcon className="h-5 w-5 fill-current text-yellow-400" />
           <span className="ml-1 font-medium text-sm">4.4</span>
-          <span className="ml-1 text-gray-500 text-sm">128</span>
+          <span className="ml-1 text-muted-foreground text-sm">
+            (128) reviews
+          </span>
         </div>
         <div className="flex items-center justify-between">
           <p className="font-bold text-lg">$129.00</p>

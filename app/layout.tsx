@@ -1,4 +1,5 @@
 import '@/assets/app.css';
+import Footer from '@/components/footer';
 import { Header } from '@/components/header';
 import { QueryProvider } from '@/components/providers/query-provider';
 import { ThemeProvider } from '@/components/providers/theme-provider';
@@ -37,12 +38,14 @@ export default function RootLayout({ children }: PropsWithChildren) {
       <body className={font.className}>
         <QueryProvider>
           <ThemeProvider
-            attribute="class"
             enableColorScheme
+            attribute="class"
             defaultTheme="light"
+            disableTransitionOnChange
           >
             <Header />
             <main className="container p-4">{children}</main>
+            <Footer />
             <ToastProvider />
           </ThemeProvider>
         </QueryProvider>
