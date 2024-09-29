@@ -18,9 +18,9 @@ type Props = {
 export function AuthForm({ title }: Props) {
   const [loading, setLoading] = useState(false);
 
-  const onSignIn = async () => {
+  const onSignIn = async (provider: string) => {
     setLoading(true);
-    await signIn('github');
+    await signIn(provider);
   };
 
   return (
@@ -32,12 +32,21 @@ export function AuthForm({ title }: Props) {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Button className="w-full" onClick={onSignIn} disabled={loading}>
-          {title} with GitHub
-          {!!loading && (
-            <SpinnerIcon className="ml-2 size-4 fill-primary-foreground" />
-          )}
-        </Button>
+        <div className="grid grid-cols-2 gap-4">
+          <Button
+            disabled={loading}
+            variant={'outline'}
+            onClick={() => onSignIn('google')}
+          >
+            Google
+          </Button>
+          <Button onClick={() => onSignIn('github')} disabled={loading}>
+            GitHub
+            {!!loading && (
+              <SpinnerIcon className="ml-2 size-4 fill-primary-foreground" />
+            )}
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );

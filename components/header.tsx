@@ -146,9 +146,11 @@ export async function Header() {
                   Settings
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <LogOut className="mr-2 size-4" />
-                  Log Out
+                <DropdownMenuItem asChild>
+                  <Link href={'/logout'}>
+                    <LogOut className="mr-2 size-4" />
+                    Log Out
+                  </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
