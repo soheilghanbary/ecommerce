@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, Trash2Icon, TrashIcon } from 'lucide-react';
 
 export default () => {
   return (
@@ -31,7 +31,10 @@ export default () => {
         </CardContent>
         <CardFooter>
           <Button className="mr-2">Save</Button>
-          <Button variant={'destructive'}>Delete Store</Button>
+          <Button variant={'outline'} className="text-destructive">
+            <Trash2Icon className="mr-2 size-4" />
+            Delete Store
+          </Button>
         </CardFooter>
       </Card>
     </div>
