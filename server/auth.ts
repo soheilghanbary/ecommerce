@@ -5,6 +5,7 @@ import {
 } from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
+import prisma from './db';
 
 declare module 'next-auth' {
   interface Session {
@@ -51,22 +52,22 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    // signIn: async ({ user }) => {
-    //   // check user exist on database
-    //   const exist = await db.user.findFirst({ where: { id: user.id } })
-    //   if (exist) return true
-    //   // create user
-    //   await db.user.create({
-    //     data: {
-    //       id: user.id,
-    //       name: user.name!,
-    //       email: user.email!,
-    //       image: user.image!,
-    //       username: user.id,
-    //     },
-    //   })
-    //   return true
-    // },
+    signIn: async ({ user }) => {
+      // check user exist on database
+      const exist = await prisma.user.findFirst({
+        where: { email: user.email! },
+      });
+      if (exist) return true;
+      // create user
+      await prisma.user.create({
+        data: {
+          name: user.name!,
+          email: user.email!,
+          image: user.image!,
+        },
+      });
+      return true;
+    },
     session: async ({ session, token }) => {
       if (session?.user) {
         session.user.id = token.uid;

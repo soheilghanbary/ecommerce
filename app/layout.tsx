@@ -16,8 +16,8 @@ const font = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Nix',
-    template: '%s - nix',
+    default: 'Shopino',
+    template: '%s - Shopino',
   },
   description: 'The minimal full stack starter',
   icons: {
@@ -43,9 +43,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
             defaultTheme="light"
             disableTransitionOnChange
           >
-            <Header />
-            <main className="container p-4">{children}</main>
-            <Footer />
+            {children}
             <ToastProvider />
           </ThemeProvider>
         </QueryProvider>

@@ -1,26 +1,24 @@
 import { ChevronRight, ShoppingCartIcon, StarIcon } from 'lucide-react';
-import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 
 const ProductCard = () => {
   return (
     <div className="border-separate rounded-xl border transition-all duration-200 hover:shadow-md">
-      <div className="h-80 w-full rounded-t-[inherit] bg-muted/40" />
+      <img
+        alt=""
+        src="https://demo.vercel.store/_next/image?url=https%3A%2F%2Fcdn.shopify.com%2Fs%2Ffiles%2F1%2F0754%2F3727%2F7491%2Ffiles%2Fhoodie-1.png%3Fv%3D1690003482&w=640&q=75"
+        className="h-60 w-full border-separate rounded-t-[inherit] border-b bg-muted/20 object-contain"
+      />
       <div className="p-4">
-        <div className="mb-2 flex items-start justify-between">
-          <h3 className="line-clamp-2 font-semibold text-lg">
-            Wireless Headphones
-          </h3>
-          <Badge className="ml-2">In Stock</Badge>
-        </div>
+        <h3 className="line-clamp-2 font-semibold text-lg">Acme Hoodie</h3>
         <div className="mb-2 flex items-center">
-          <StarIcon className="h-5 w-5 fill-current text-yellow-400" />
+          <StarIcon className="size-4 fill-current text-yellow-500" />
           <span className="ml-1 font-medium text-sm">4.4</span>
           <span className="ml-1 text-muted-foreground text-sm">
             (128) reviews
           </span>
         </div>
-        <div className="flex items-center justify-between">
+        <div className="mt-4 flex items-center justify-between">
           <p className="font-bold text-lg">$129.00</p>
           <Button variant={'default'} size={'sm'} className="gap-2">
             <ShoppingCartIcon className="size-4" />
@@ -41,8 +39,8 @@ export function ProductList() {
           View All <ChevronRight className="size-4" />
         </Button>
       </div>
-      <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {[1, 2, 3, 4, 5, 6].map((item) => (
+      <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
           <ProductCard key={item} />
         ))}
       </div>
