@@ -30,6 +30,9 @@ export const getStores = async () => {
     where: {
       userId: session?.user?.id,
     },
+    orderBy: {
+      createdAt: 'desc',
+    },
   });
 };
 

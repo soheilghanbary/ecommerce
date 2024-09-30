@@ -27,7 +27,7 @@ const SidebarLink = ({ label, icon: Icon, href }: SidebarLinkProps) => {
       href={href}
       className={cn(
         'flex items-center gap-3 rounded-lg px-4 py-2 text-foreground/75 duration-100 hover:text-foreground',
-        { 'bg-muted text-foreground': isActive },
+        { 'bg-muted/50 text-foreground': isActive },
       )}
     >
       <Icon className="size-4 lg:size-5" />
