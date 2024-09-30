@@ -1,3 +1,4 @@
+import { BackButton } from '@/components/back-btn';
 import { CreateStore } from '@/components/create-store';
 import { Button } from '@/components/ui/button';
 import { getStores } from '@/server/actions/store';
@@ -35,9 +36,7 @@ export default async () => {
     <>
       <div className="mb-6 flex items-center justify-between gap-4">
         <div className="flex items-center gap-4">
-          <Button variant={'outline'} size={'icon'}>
-            <ChevronLeft className="size-4" />
-          </Button>
+          <BackButton />
           <div>
             <h1 className="font-extrabold text-2xl">Stores</h1>
             <p className="text-muted-foreground text-sm">Manage your stores</p>

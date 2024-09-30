@@ -38,7 +38,7 @@ model Product {
 model Store {
   id          String    @id @default(uuid())
   name        String
-  description String?
+  description String    @default("")
   createdAt   DateTime  @default(now())
   products    Product[]
   user        User      @relation(fields: [userId], references: [id])

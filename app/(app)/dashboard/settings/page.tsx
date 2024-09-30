@@ -1,3 +1,4 @@
+import { BackButton } from '@/components/back-btn';
 import { TextField } from '@/components/text-field';
 import { Button } from '@/components/ui/button';
 import {
@@ -8,15 +9,12 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { ChevronLeft } from 'lucide-react';
 
 export default () => {
   return (
     <div className="grid gap-4">
       <div className="flex items-center gap-4">
-        <Button variant={'outline'} size={'icon'}>
-          <ChevronLeft className="size-4" />
-        </Button>
+        <BackButton />
         <div>
           <h1 className="font-extrabold text-2xl">Settings</h1>
           <p className="text-muted-foreground text-sm">Manage your settings</p>
