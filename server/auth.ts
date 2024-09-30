@@ -23,25 +23,6 @@ declare module 'next-auth/jwt' {
 
 export const authOptions: NextAuthOptions = {
   providers: [
-    // CredentialsProvider({
-    // 	name: "Credentials",
-    // 	credentials: {
-    // 		username: { label: "Username", type: "text" },
-    // 		password: { label: "Password", type: "text" },
-    // 	},
-    // 	async authorize(credentials, req) {
-    // 		// check email exist
-    // 		const user = await db.user.findUnique({
-    // 			where: {
-    // 				username: credentials?.username,
-    // 				password: credentials?.password,
-    // 			},
-    // 		})
-    // 		if (user) {
-    // 			return user
-    // 		}
-    // 	},
-    // }),
     GithubProvider({
       clientId: process.env.GITHUB_ID!,
       clientSecret: process.env.GITHUB_SECRET!,
@@ -52,13 +33,16 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    signIn: async ({ user }) => {
-      // check user exist on database
-      const exist = await prisma.user.findFirst({
+    async signIn({ user }) {
+      // Check if user exists in DB
+      const exist = await prisma.user.findUnique({
         where: { email: user.email! },
       });
+
+      // If user exists, return true
       if (exist) return true;
-      // create user
+
+      // If user does not exist, create a new one
       await prisma.user.create({
         data: {
           name: user.name!,
@@ -66,35 +50,36 @@ export const authOptions: NextAuthOptions = {
           image: user.image!,
         },
       });
+
       return true;
     },
-    session: async ({ session, token }) => {
+    async session({ session, token }) {
       if (session?.user) {
+        // Attach the user's Prisma ID to the session object
         session.user.id = token.uid;
       }
       return session;
     },
-    jwt: async ({ token, user, trigger, session }) => {
+    async jwt({ token, user }) {
+      // When user is signed in, attach the Prisma user ID to the token
       if (user) {
-        token.uid = user.id;
+        const userFromDb = await prisma.user.findUnique({
+          where: { email: user.email! },
+        });
+        if (userFromDb) {
+          token.uid = userFromDb.id; // Use the Prisma ID
+        }
       }
-      if (trigger === 'update') {
-        return { ...token, ...session.user };
-      }
-      return { ...token, ...user };
+      return token;
     },
   },
-  secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: 'jwt',
   },
-  pages: {
-    signIn: '/sign-in',
-    error: '/api/auth/error',
-  },
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 export const getUserSession = async () => {
   const session = await getServerSession(authOptions);
-  return session?.user || null;
+  return session;
 };

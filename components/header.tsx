@@ -127,23 +127,30 @@ export async function Header() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Avatar>
-                  <AvatarImage src={session.image!} alt={session.name!} />
+                  <AvatarImage
+                    src={session.user?.image!}
+                    alt={session.user?.name!}
+                  />
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuLabel>
-                  {session.name} <br />{' '}
+                  {session.user?.name} <br />{' '}
                   <span className="font-normal text-muted-foreground text-xs">
-                    {session.email}
+                    {session.user?.email}
                   </span>
                 </DropdownMenuLabel>
-                <DropdownMenuItem>
-                  <LayoutGrid className="mr-2 size-4" />
-                  Dashboard
+                <DropdownMenuItem asChild>
+                  <Link href={'/dashboard'}>
+                    <LayoutGrid className="mr-2 size-4" />
+                    Dashboard
+                  </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Settings className="mr-2 size-4" />
-                  Settings
+                <DropdownMenuItem asChild>
+                  <Link href={'/dashboard/settings'}>
+                    <Settings className="mr-2 size-4" />
+                    Settings
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>

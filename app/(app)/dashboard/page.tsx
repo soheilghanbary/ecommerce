@@ -7,7 +7,10 @@ export default () => {
       <Button variant={'outline'} size={'icon'}>
         <ChevronLeft className="size-4" />
       </Button>
-      <h1 className="font-extrabold text-2xl">Dashboard</h1>
+      <div>
+        <h1 className="font-extrabold text-2xl">Dashboard</h1>
+        <p className="text-muted-foreground text-sm">Manage your dashboard</p>
+      </div>
     </div>
   );
 };
