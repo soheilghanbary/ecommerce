@@ -46,7 +46,7 @@ export function Sidebar() {
         </div>
         <ModeToggle />
       </div>
-      <hr className="my-2" />
+      <hr className="mb-2" />
       <div className="flex flex-col gap-1 px-2">
         <SidebarLink href="/dashboard" label="Dashboard" icon={HomeIcon} />
         <SidebarLink href="/dashboard/stores" label="Stores" icon={StoreIcon} />

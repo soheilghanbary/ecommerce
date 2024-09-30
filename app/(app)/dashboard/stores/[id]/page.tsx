@@ -1,4 +1,5 @@
 import { BackButton } from '@/components/back-btn';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { UpdateStore } from '@/components/update-store';
 import { getStore } from '@/server/actions/store';
 
@@ -15,7 +16,18 @@ export default async ({ params }: { params: Params }) => {
         <BackButton />
         <h1 className="font-extrabold text-2xl">Store Page</h1>
       </div>
-      <UpdateStore {...store} />
+      <Tabs defaultValue="products">
+        <TabsList>
+          <TabsTrigger value="products">Products</TabsTrigger>
+          <TabsTrigger value="settings">Settings</TabsTrigger>
+        </TabsList>
+        <TabsContent value="products">
+          Make changes to your account here.
+        </TabsContent>
+        <TabsContent value="settings">
+          <UpdateStore {...store} />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 };
