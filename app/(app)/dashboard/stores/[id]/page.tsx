@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { UpdateStore } from '@/components/update-store';
 import { getStore } from '@/server/actions/store';
 import { BadgePlus, EditIcon, FilterIcon, Trash2Icon } from 'lucide-react';
+import Link from 'next/link';
 
 type Params = {
   id: string;
@@ -33,7 +34,7 @@ export default async ({ params }: { params: Params }) => {
           <TabsTrigger value="settings">Settings</TabsTrigger>
         </TabsList>
         <TabsContent value="products">
-          <div className="mb-2 flex items-center justify-between gap-4">
+          <div className="mb-4 flex items-center justify-between gap-4">
             <div className="flex w-fit items-center gap-2">
               <Input
                 type="text"
@@ -44,9 +45,11 @@ export default async ({ params }: { params: Params }) => {
                 <FilterIcon className="size-4" />
               </Button>
             </div>
-            <Button>
-              <BadgePlus className="mr-2 size-4" />
-              New Product
+            <Button asChild>
+              <Link href={'/dashboard/products/new'}>
+                <BadgePlus className="mr-2 size-4" />
+                New Product
+              </Link>
             </Button>
           </div>
           <div className="flow-root rounded-lg border p-4 shadow-sm">
